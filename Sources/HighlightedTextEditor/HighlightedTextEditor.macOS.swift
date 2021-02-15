@@ -26,6 +26,7 @@ public struct HighlightedTextEditor: NSViewRepresentable, HighlightingTextEditor
     var onEditingChanged: () -> Void       = {}
     var onCommit        : () -> Void       = {}
     var onTextChange    : (String) -> Void = { _ in }
+
     
     private(set) var allowsDocumentBackgroundColorChange: Bool                       = true
     private(set) var backgroundColor                    : NSColor                    = .textBackgroundColor
@@ -248,6 +249,9 @@ public final class CustomTextView: NSView {
         textView.maxSize                 = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         textView.minSize                 = NSSize(width: 0, height: contentSize.height)
         textView.textColor               = NSColor.labelColor
+        
+        // giving it some padding please
+        textView.textContainerInset = NSSize(width: 100, height: 70)
         
         return textView
     }()
